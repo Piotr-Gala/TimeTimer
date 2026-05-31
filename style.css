@@ -65,6 +65,13 @@ body {
   cursor: not-allowed;
 }
 
+.dial.is-alarming {
+  border-width: 3px;
+  border-color: #ef3b3b;
+  animation: alarm-glow 0.9s ease-in-out infinite;
+  cursor: not-allowed;
+}
+
 .dial::before {
   content: "";
   position: absolute;
@@ -172,4 +179,23 @@ button:active {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
+}
+
+@keyframes alarm-glow {
+  0%,
+  100% {
+    border-color: rgb(239 59 59 / 55%);
+    box-shadow:
+      inset 0 0 0 1px rgb(22 32 35 / 12%),
+      0 14px 28px rgb(20 50 55 / 14%),
+      0 0 0 0 rgb(239 59 59 / 0%);
+  }
+
+  50% {
+    border-color: rgb(239 59 59 / 100%);
+    box-shadow:
+      inset 0 0 0 1px rgb(22 32 35 / 12%),
+      0 14px 28px rgb(20 50 55 / 14%),
+      0 0 22px 6px rgb(239 59 59 / 42%);
+  }
 }
