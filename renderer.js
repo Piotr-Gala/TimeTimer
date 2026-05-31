@@ -6,6 +6,7 @@ const resetButton = document.querySelector("#reset");
 
 const maxMinutes = 4 * 60;
 let intervalId = null;
+let alarmIntervalId = null;
 let selectedMinutes = 25;
 let totalSeconds = selectedMinutes * 60;
 let remainingSeconds = totalSeconds;
@@ -88,6 +89,19 @@ function playAlarm() {
   playBeep(now + 2, 1175);
 }
 
+function startAlarm() {
+  playAlarm();
+  alarmIntervalId = setInterval(playAlarm, 2800);
+  startButton.textContent = "Stop";
+  dial.classList.add("is-alarming");
+}
+
+function stopAlarm() {
+  clearInterval(alarmIntervalId);
+  alarmIntervalId = null;
+  dial.classList.remove("is-alarming");
+}
+
 function setTimerMinutes(minutes) {
   selectedMinutes = Math.min(Math.max(minutes, 1), maxMinutes);
   totalSeconds = selectedMinutes * 60;
@@ -120,6 +134,7 @@ function stopTimer() {
 
 function resetTimer() {
   stopTimer();
+  stopAlarm();
   setTimerMinutes(selectedMinutes);
 }
 
@@ -129,19 +144,25 @@ function tick() {
   if (remainingSeconds <= 0) {
     remainingSeconds = 0;
     stopTimer();
-    playAlarm();
+    startAlarm();
   }
 
   updateUi();
 }
 
 startButton.addEventListener("click", () => {
-  ensureAudioContext();
+  if (alarmIntervalId !== null) {
+    stopAlarm();
+    startButton.textContent = "Start";
+    return;
+  }
 
   if (intervalId !== null) {
     stopTimer();
     return;
   }
+
+  ensureAudioContext();
 
   if (remainingSeconds === 0) {
     resetTimer();
@@ -156,7 +177,7 @@ startButton.addEventListener("click", () => {
 resetButton.addEventListener("click", resetTimer);
 
 dial.addEventListener("pointerdown", (event) => {
-  if (intervalId !== null) {
+  if (intervalId !== null || alarmIntervalId !== null) {
     return;
   }
 
