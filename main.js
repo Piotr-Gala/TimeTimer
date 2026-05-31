@@ -13,6 +13,7 @@ function createWindow() {
     },
   });
 
+  win.setAlwaysOnTop(true, "screen-saver");
   win.setMenu(null);
   win.loadFile("index.html");
 }
