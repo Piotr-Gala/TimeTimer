@@ -2,7 +2,7 @@
 
 A small always-on-top visual timer built with Electron.
 
-![TimeTimer screenshot](assets/screenshot.png)
+![TimeTimer screenshot](assets/screenshot.pn)
 
 ## Features
 
