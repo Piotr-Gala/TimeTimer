@@ -14,14 +14,6 @@ A small always-on-top visual timer built with Electron.
 
 ## Run the app
 
-Use the packaged Windows app:
-
-```text
-dist/TimeTimer 1.0.0.exe
-```
-
-Or run it from the terminal for development:
-
 Install dependencies:
 
 ```bash
@@ -36,10 +28,14 @@ npm start
 
 ## Build
 
-Create a portable Windows `.exe`:
+Create a portable Windows `.exe` for launching the app without a terminal:
 
 ```bash
 npm run build
 ```
 
-The built app is saved in `dist/`.
+The built app is saved as:
+
+```text
+dist/TimeTimer 1.0.0.exe
+```
