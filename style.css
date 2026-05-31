@@ -1,0 +1,175 @@
+:root {
+  --accent: #1f9aaa;
+  --track: #f7f7f4;
+  --text: #162023;
+  --muted: #66777d;
+  --bg: #eef8f9;
+  --surface: #ffffff;
+  --degrees: 360deg;
+  --hand-degrees: 360deg;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.app {
+  width: 100%;
+  max-width: 260px;
+  padding: 8px 12px;
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+
+.timer {
+  display: grid;
+  gap: 6px;
+  place-items: center;
+}
+
+.dial {
+  position: relative;
+  width: 198px;
+  height: 198px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at center, transparent 0 22px, rgb(255 255 255 / 88%) 23px 24px, transparent 25px),
+    conic-gradient(from calc(-1 * var(--degrees)), var(--accent) 0deg var(--degrees), var(--track) var(--degrees) 360deg);
+  border: 8px solid #bfeaf0;
+  box-shadow:
+    inset 0 0 0 1px rgb(22 32 35 / 12%),
+    0 14px 28px rgb(20 50 55 / 14%);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.dial.is-dragging {
+  cursor: grabbing;
+}
+
+.dial.is-running {
+  cursor: not-allowed;
+}
+
+.dial::before {
+  content: "";
+  position: absolute;
+  inset: 17px;
+  border-radius: 50%;
+  border: 1px solid rgb(22 32 35 / 12%);
+  pointer-events: none;
+}
+
+.time {
+  font-size: 33px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28px;
+  margin-left: -14px;
+  margin-top: -9px;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  transform: rotate(var(--angle)) translateY(-73px) rotate(calc(-1 * var(--angle)));
+}
+
+.tick {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 8px;
+  margin-left: -1px;
+  margin-top: -4px;
+  background: rgb(22 32 35 / 70%);
+  transform: rotate(var(--angle)) translateY(-60px);
+  transform-origin: center;
+}
+
+.hand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 67px;
+  height: 4px;
+  border-radius: 999px;
+  background: #163034;
+  transform: rotate(calc(var(--hand-degrees) - 90deg));
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.knob {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  margin-left: -17px;
+  margin-top: -17px;
+  border-radius: 50%;
+  background: #d8f4f7;
+  border: 1px solid rgb(22 32 35 / 18%);
+  box-shadow: 0 2px 5px rgb(22 32 35 / 22%);
+  pointer-events: none;
+}
+
+.controls {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+button {
+  height: 34px;
+  border: 0;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.controls button:last-child {
+  color: var(--text);
+  background: #d9e5e8;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

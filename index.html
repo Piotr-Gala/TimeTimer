@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Timer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="timer" aria-label="Timer">
+        <div id="dial" class="dial">
+          <div id="labels" class="labels" aria-hidden="true"></div>
+          <div class="hand" aria-hidden="true"></div>
+          <div class="knob" aria-hidden="true"></div>
+        </div>
+        <div id="time" class="time">25:00</div>
+      </section>
+
+      <div class="controls">
+        <button id="start" type="button">Start</button>
+        <button id="reset" type="button">Reset</button>
+      </div>
+    </main>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>
