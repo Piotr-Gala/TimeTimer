@@ -4,13 +4,30 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder --win portable"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "build": {
+    "appId": "com.piter.timetimer",
+    "productName": "TimeTimer",
+    "files": [
+      "index.html",
+      "main.js",
+      "renderer.js",
+      "style.css",
+      "assets/**"
+    ],
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false
+    }
+  },
   "devDependencies": {
-    "electron": "^42.3.0"
+    "electron": "^42.3.0",
+    "electron-builder": "^26.8.1"
   }
 }
